@@ -2,40 +2,42 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { CharacterInfo } from "../component/CharacterInfo.js";
+import { PlanetsInfo } from "../component/PlanetsInfo.js";
 
 
-export const Single = () => {
+export const Planets = () => {
 
 
 	const { store, actions } = useContext(Context);
 
-
+	
 
 	const params = useParams();
 
 
 	useEffect(() => {
-		actions.getCharactersInfo(params.theid);
-	}, [params.theid]);
+		actions.getPlanetsInfo(params.theid);
+	}, []);
 
 
 	return (
 		<div className="jumbotron">
 			
-			<CharacterInfo
-				key={params.theid}
-				name={store.charactersInfo.name}
-				eye_color={store.charactersInfo.eye_color}
-				hair_color={store.charactersInfo.hair_color}
-				mass={store.charactersInfo.mass}
-				gender={store.charactersInfo.gender}
-				skin_color={store.charactersInfo.skin_color}
-				birth_year={store.charactersInfo.birth_year}
-				id={params.theid}
-				type={store.charactersInfo.type}
-			/>
 
+			<PlanetsInfo
+				key={params.theid}
+				name={store.planetsInfo.name}
+				diameter={store.planetsInfo.diameter}
+				rotation_period={store.planetsInfo.rotation_period}
+				orbital_period={store.planetsInfo.orbital_period}
+				gravity={store.planetsInfo.gravity}
+				population={store.planetsInfo.population}
+				climate={store.planetsInfo.climate}
+				terrain={store.planetsInfo.terrain}
+				surface_water={store.planetsInfo.surface_water}
+				id={params.theid}
+
+			/>
 
 			<hr className="my-4" />
 
@@ -47,6 +49,3 @@ export const Single = () => {
 		</div>
 	);
 };
-
-
-
